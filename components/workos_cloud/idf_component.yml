@@ -1,0 +1,7 @@
+version: "0.1.0"
+description: "WorkOS SSO device sign-in (RFC 8628 at signin.workos.com) and read-only Alto MCP calls on mcp.workos.cloud"
+dependencies:
+  idf: ">=5.3"
+  espressif/cjson:
+    version: "~1.7.19"
+    public: true   # workos_cloud.h exposes cJSON

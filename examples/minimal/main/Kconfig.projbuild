@@ -1,0 +1,14 @@
+menu "Minimal example"
+
+    config EXAMPLE_WIFI_SSID
+        string "Wi-Fi SSID (fallback)"
+        default ""
+        help
+            Used only when NVS holds no station config. Type it yourself in
+            menuconfig; it lands in sdkconfig, which is gitignored.
+
+    config EXAMPLE_WIFI_PASSWORD
+        string "Wi-Fi password (fallback)"
+        default ""
+
+endmenu

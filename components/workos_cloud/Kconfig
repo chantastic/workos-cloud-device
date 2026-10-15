@@ -1,0 +1,81 @@
+menu "WorkOS Cloud device client"
+
+    config WORKOS_CLOUD_AUTH_SERVER
+        string "Authorization server"
+        default "https://signin.workos.com"
+        help
+            Issuer that serves /oauth2/device_authorization, /oauth2/token,
+            /oauth2/userinfo and /oauth2/register.
+
+    config WORKOS_CLOUD_RESOURCE
+        string "Resource (exactly one)"
+        default "https://mcp.workos.cloud/mcp"
+        help
+            The one RFC 8707 resource every token request names; also the
+            MCP endpoint. Naming two resources makes the token's aud the
+            project, which mcp.workos.cloud rejects ("unexpected aud").
+
+    config WORKOS_CLOUD_CLIENT_ID
+        string "Public client ID"
+        default ""
+        help
+            A public client (no secret) registered by dynamic client
+            registration: run `tools/wcd.py register`. Required.
+
+    config WORKOS_CLOUD_SCOPE
+        string "Scope"
+        default "openid profile email offline_access"
+
+    config WORKOS_CLOUD_USER_AGENT
+        string "User-Agent"
+        default "workos-cloud-device/0.1"
+        help
+            Sent on every request. Cloudflare answers default library
+            agents with error 1010, so keep this custom.
+
+    config WORKOS_CLOUD_CLIENT_NAME
+        string "MCP clientInfo.name"
+        default "workos-cloud-device"
+
+    config WORKOS_CLOUD_NVS_NAMESPACE
+        string "NVS namespace for the refresh token"
+        default "workos_cloud"
+
+    config WORKOS_CLOUD_NVS_REFRESH_KEY
+        string "NVS key for the refresh token"
+        default "refresh"
+
+    config WORKOS_CLOUD_DIRECT_TOOLS
+        string "Allowlist: tools called directly"
+        default "alto_whoami alto_apps_available alto_integrations_list"
+        help
+            Space- or comma-separated tool names the device may call with
+            empty arguments. Read-only tools only.
+
+    config WORKOS_CLOUD_APP_TOOLS
+        string "Allowlist: alto_app_use app:tool pairs"
+        default "video:list_videos video:get_video_status"
+        help
+            Space- or comma-separated app:tool pairs alto_app_use may run.
+            alto_app_use is annotated destructive; list read-only tools only.
+
+    config WORKOS_CLOUD_READ_LIKE_NAMES
+        bool "Also allow listed tools named like reads (list_, get, status, ...)"
+        default n
+        help
+            A tools/list entry with no required arguments whose name leads
+            with a read verb is treated as safe. A name is not a guarantee.
+
+    config WORKOS_CLOUD_MAX_RESPONSE_KB
+        int "MCP reply cap (KiB)"
+        default 512
+        range 8 4096
+        help
+            alto_integrations_list alone is over 100 KB. Buffers go to PSRAM
+            when the board has it.
+
+    config WORKOS_CLOUD_TIMEOUT_MS
+        int "HTTPS timeout (ms)"
+        default 20000
+
+endmenu

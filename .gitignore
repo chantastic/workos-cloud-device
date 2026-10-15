@@ -1,0 +1,14 @@
+# Private state: client registration, sessions (tokens), captures, logs
+.local/
+
+# Build output and fetched components
+build/
+.build/
+managed_components/
+dependencies.lock
+sdkconfig*
+!sdkconfig.defaults
+*.bin
+
+__pycache__/
+config/workos-cloud.json

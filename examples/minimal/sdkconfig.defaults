@@ -1,0 +1,7 @@
+# TLS + Wi-Fi need more than the default 1 MB app partition.
+CONFIG_PARTITION_TABLE_SINGLE_APP_LARGE=y
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE=y
+CONFIG_MBEDTLS_CERTIFICATE_BUNDLE_DEFAULT_FULL=y
+# No PSRAM assumed: the example's replies (alto_whoami, list_videos limit 1)
+# are small. Raise this on boards with PSRAM (alto_integrations_list > 100 KB).
+CONFIG_WORKOS_CLOUD_MAX_RESPONSE_KB=64

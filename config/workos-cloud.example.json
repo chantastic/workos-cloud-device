@@ -1,0 +1,16 @@
+{
+  "auth_server": "https://signin.workos.com",
+  "resource": "https://mcp.workos.cloud/mcp",
+  "client_id": "",
+  "client_name": "workos-cloud-device",
+  "scope": "openid profile email offline_access",
+  "user_agent": "workos-cloud-device/0.1",
+  "allowlist": {
+    "direct_tools": ["alto_whoami", "alto_apps_available", "alto_integrations_list"],
+    "app_tools": [
+      {"app": "video", "tool": "list_videos"},
+      {"app": "video", "tool": "get_video_status"}
+    ],
+    "read_like_names": false
+  }
+}
