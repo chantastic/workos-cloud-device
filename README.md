@@ -147,7 +147,7 @@ fetches). Nothing in `make test` touches the network or a board.
 
 ## License
 
-License: not yet chosen (source project has none) — choose before publishing.
+MIT. See [LICENSE](LICENSE).
 `tests/vendor/cJSON` keeps its own MIT license.
 
 Extracted from gadget-sso, derived from gadget by Michael Chan.
